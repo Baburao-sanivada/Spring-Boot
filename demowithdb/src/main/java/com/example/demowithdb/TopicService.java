@@ -38,20 +38,10 @@ public class TopicService {
     }
 
     public void updateTopic(String id, Topic topic) {
-        for(int i=0;i<list.size();i++){
-            if(list.get(i).getName().equals(id)){
-                list.set(i,topic);
-                return;
-            }
-        }
+        topicRepo.save(topic);
     }
 
     public void deleteTopic(String id) {
-        for(int i=0;i<list.size();i++){
-            if(list.get(i).getName().equals(id)){
-                list.remove(list.get(i));
-                return;
-            }
-        }
+        topicRepo.deleteById(id);
     }
 }
