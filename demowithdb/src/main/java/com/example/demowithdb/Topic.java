@@ -1,11 +1,17 @@
 package com.example.demowithdb;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class Topic {
     
-    private int id;
+    @Id
+    private String id;
     private String description;
     private String name;
 
-    public Topic(int id, String name, String description) {
+    public Topic(String id, String name, String description) {
         this.id = id;
         this.description = description;
         this.name = name;
@@ -15,10 +21,10 @@ public class Topic {
 
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
     public String getName() {

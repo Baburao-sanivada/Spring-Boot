@@ -3,18 +3,25 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class TopicService {
+
+    @Autowired
+    private TopicRepository topicRepo;
+
     private List<Topic> list = new ArrayList<>(Arrays.asList(
-            new Topic(1, "Java", "Complete Java Course"),
-            new Topic(2, "Spring Boot", "Complete Spring Boot Projects"),
-            new Topic(3, "JavaScript", "JavaScript Course")
+            // new Topic(1, "Java", "Complete Java Course"),
+            // new Topic(2, "Spring Boot", "Complete Spring Boot Projects"),
+            // new Topic(3, "JavaScript", "JavaScript Course")
         ));
 
     public List<Topic> getAllTopics(){
-        return list;
+        List<Topic> list= new ArrayList<>();
+        for(Topic t:topicRepo.findAll()) list.add(t);
+        return list; 
     }
 
     public Topic getTopic(String id){
@@ -27,7 +34,7 @@ public class TopicService {
     }
 
     public void addTopic(Topic topic) {
-        list.add(topic);
+        topicRepo.save(topic);
     }
 
     public void updateTopic(String id, Topic topic) {
