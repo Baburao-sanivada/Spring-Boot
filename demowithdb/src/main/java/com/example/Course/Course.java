@@ -1,23 +1,31 @@
-package com.example.demowithdb;
+package com.example.Course;
+
+import com.example.Topic.Topic;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
-public class Topic {
+public class Course {
     
     @Id
     private String id;
     private String description;
     private String name;
 
-    public Topic(String id, String name, String description) {
+    @ManyToOne
+    private Topic topic;
+
+
+    public Course(String id, String name, String description,String topicId) {
         this.id = id;
         this.description = description;
         this.name = name;
+        this.topic = new Topic(topicId, "", "");
     }
 
-    public Topic(){
+    public Course(){
 
     }
 
